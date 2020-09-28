@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+/* HEADER AND NAVBAR STYLING */
+header {
+    background-color:black;
+    padding: 1rem;
+}
+header a {
+    background-color:black;
+    text-decoration: none;
+    font-size: 3rem;
+    color: white;
+}
+header a:hover {
+    text-decoration: underline;
+}
+
+nav {
+    background-color:black;
+    overflow-x: hidden;
+}
+nav a {
+    color: white;
+    background-color:black;
+    font-size: 1rem;
+    text-decoration: none;
+    text-align: center;
+    padding: 1rem;
+    float: left;
+}
+nav a.right {
+    float: right;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+.active {
+    font-weight: bold;
+}
+.right {
+    float: right;
+}
+
+/* MAIN STYLING */
+main {
+    margin: 1rem auto;
+    max-width: 750px;
+
+    line-height: 1.6rem;
+    font-size: 1rem;
+
+    color: #444;
+
+    padding: 0 10px;
+}
+h1,h2,h3 {
+    line-height: 1.2;
+}
+a {
+	  color: #0077AA;
+}
+
+/* TABEL STYLING */
+table {
+    margin: 2rem 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+/* FORM STYLING */
+input, select {
+  width: 100%;
+  padding: 12px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #ddd;
+  color: black;
+  border: #ccc 1px solid;
+  padding: 14px 20px;
+  margin: 8px 0;
+}
+
+input[type=submit] {
+  background-color: #ddd;
+}
+
+input[type=checkbox] {
+  padding: 0;
+  margin: 0;
+  width: auto;
+}
+
+input[type=submit]:hover {
+  background-color: #ccc;
+} 
+
+input[type=submit].abtn {
+  background-color: #afa;
+}
+input[type=submit].abtn:hover {
+  background-color: #8f8;
+} 
+
+@media only screen and (max-width: 750px) {
+header {
+  text-align: center;
+}
+  nav a {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 1rem 0;
+  }
+}
