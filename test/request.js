@@ -3,14 +3,12 @@ function subAction(action, btn) {
   trData = trDom.children;
 
   trId = trData[0].innerHTML;
-  trFrom = trData[1].innerHTML;
-  trTo = trData[2].innerHTML;
-  trName = trData[3].innerHTML;
-
-  console.log(trId);
-  console.log(trFrom);
-  console.log(trTo);
-  console.log(trName);
+  //trFrom = trData[1].innerHTML;
+  //trTo = trData[2].innerHTML;
+  //trName = trData[3].innerHTML;
+  trFrom = trData[1].firstElementChild.innerHTML;
+  trTo = trData[2].firstElementChild.innerHTML;
+  trName = trData[3].firstElementChild.innerHTML;
 
   //for (var i = 0, len = trData.length - 1; i < len; i++) {
   //console.log(i + ": " + trData[i].innerHTML);
@@ -24,7 +22,23 @@ function subAction(action, btn) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("notice").innerHTML = this.responseText;
+      try {
+        var response = JSON.parse(this.responseText)
+        if (response.action == "update") {
+          document.getElementById("notice").innerHTML = this.responseText;
+        }
+        else if (response.action == "restore") {
+          trData[1].firstElementChild.innerHTML = response.from;
+          trData[2].firstElementChild.innerHTML = response.to;
+          trData[3].firstElementChild.innerHTML = response.name;
+        }
+        else if (response.action == "delete") {
+          document.getElementById("notice").innerHTML = JSON.stringify(response);
+        }
+      } catch {
+        console.log(this.responseText);
+        document.getElementById("notice").innerHTML = "Bad input data!";
+      }
     }
   }
   xhttp.open("POST", "edit.inc.php", true);

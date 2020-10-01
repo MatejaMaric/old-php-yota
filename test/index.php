@@ -40,23 +40,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["name"]) && isset($_POS
     border-collapse: collapse;
   }
   th, td {
-    border: 1px solid black;
+    border: 1px solid #ccc;
     padding: 0.3rem;
   }
   tbody tr:nth-child(even) {
-    background-color: #ccc;
+    background-color: #ddd;
   }
   thead {
-    color: white;
-    background-color: black;
+    color: #333;
+    background-color: #ccc;
   }
   .edit {
     padding: 2px;
     border-top: 1px solid #333;
     border-left: 1px solid #333;
-    border-bottom: 1px solid #666;
-    border-right: 1px solid #666;
-    border-radius: 3px;
+    border-bottom: 1px solid #bbb;
+    border-right: 1px solid #bbb;
   }
 </style>
 </head>
@@ -83,9 +82,12 @@ try {
     echo "<td><div contenteditable=\"true\" class=\"edit\">" . $row['from'] . "</div></td>";
     echo "<td><div contenteditable=\"true\" class=\"edit\">" . $row['to'] . "</div></td>";
     echo "<td><div contenteditable=\"true\" class=\"edit\">" . $row['name'] . "</div></td>";
+    //echo "<td><div contenteditable=\"true\" class=\"edit\">" . $row['from'] . "</div></td>";
+    //echo "<td><div contenteditable=\"true\" class=\"edit\">" . $row['to'] . "</div></td>";
+    //echo "<td><div contenteditable=\"true\" class=\"edit\">" . $row['name'] . "</div></td>";
     echo "<td>";
-    echo "<button onclick=\"subAction('save', this)\">Save</button>";
-    echo "<button onclick=\"subAction('cancel', this)\">Cancel</button>";
+    echo "<button onclick=\"subAction('update', this)\">Update</button>";
+    echo "<button onclick=\"subAction('restore', this)\">Restore</button>";
     echo "<button onclick=\"subAction('delete', this)\">Delete</button>";
     echo "</td></tr>\n";
   }
