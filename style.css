@@ -48,7 +48,7 @@ nav a:hover {
 /* MAIN STYLING */
 main {
     margin: 1rem auto;
-    max-width: 750px;
+    /*max-width: 750px;*/
 
     line-height: 1.6rem;
     font-size: 1rem;
@@ -71,6 +71,13 @@ table {
     width: 100%;
 }
 
+thead {
+    background-color: black;
+    color: white;
+    /*color: black;*/
+    /*background-color: #ccc;*/
+}
+
 td, th {
     border: 1px solid #ccc;
     text-align: left;
@@ -82,6 +89,11 @@ tr:nth-child(even) {
 }
 
 /* FORM STYLING */
+form {
+    max-width: 750px;
+    margin: 0rem auto;
+}
+
 input, select {
   width: 100%;
   padding: 12px 10px;

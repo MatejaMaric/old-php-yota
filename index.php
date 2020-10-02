@@ -26,7 +26,7 @@ session_start();
 <main>
 <?php
   $user = "yota_user";
-  $password = "leex3EThieK0ieLaiVaicaifef5eecei";
+  $password = "gahdeer6shai9hogai2sai4quuaj1eVu";
   $database = "yota_call_db";
   $table = "activities";
 
@@ -37,16 +37,22 @@ session_start();
 		echo '<div style="overflow-x:auto;">';
     echo "<table>\n";
     echo "<thead><tr>";
-    echo "<th>Ime</th>";
-    echo "<th>Prezime</th>";
-    echo "<th>Godine</th>";
+    echo "<th>Operator</th>";
+    echo "<th>From</th>";
+    echo "<th>To</th>";
+    echo "<th>Special sign</th>";
+    echo "<th>Frequencies</th>";
+    echo "<th>QSO</th>";
     echo "</tr></thead><tbody>\n";
 
-    foreach($db->query("SELECT * FROM $table where approved=true") as $row) {
+    foreach($db->query("SELECT * FROM $table where approved=false ORDER BY `id` DESC") as $row) {
       echo "<tr>";
-      echo "<td>" . $row['name'] . "</td>";
-      echo "<td>" . $row['surname'] . "</td>";
-      echo "<td>" . $row['age'] . "</td>";
+      echo "<td>" . $row['operatorCall'] . "</td>";
+      echo "<td>" . $row['fromTime'] . "</td>";
+      echo "<td>" . $row['toTime'] . "</td>";
+      echo "<td>" . $row['specialCall'] . "</td>";
+      echo "<td>" . $row['frequencies'] . "</td>";
+      echo "<td>" . $row['qso'] . "</td>";
       echo "</tr>\n";
     }
 

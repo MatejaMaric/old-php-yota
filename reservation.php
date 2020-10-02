@@ -25,24 +25,7 @@ session_start();
 </nav>
 <main>
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['age'])) {
-  $user = "yota_user";
-  $password = "leex3EThieK0ieLaiVaicaifef5eecei";
-  $database = "yota_call_db";
-  $table = "activities";
-  try {
-    $conn = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("INSERT INTO activities (name, surname, age) VALUES (:name, :surname, :age)");
-    $stmt->bindParam(':name', $_POST['fname']);
-    $stmt->bindParam(':surname', $_POST['lname']);
-    $stmt->bindParam(':age', $_POST['age']);
-    $stmt->execute();
-    echo "<p>Data inserted.</p>";
-  } catch (PDOException $e) {
-    echo "<p>Error!: " . $e->getMessage() . "</p>";
-  }
-}
+  require "handle-reservation.php";
 ?>
 
 <form method="post">
@@ -52,11 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['fname']) && isset($_PO
   <option value="YT50SCWC">YT50SCWC</option>
 </select> 
 <!-- START TIME -->
+<label for="start-date">Start date:</label>
+<input type="date" id="start-date" name="sdate">
 <label for="start-time">Start time:</label>
-<input type="datetime-local" id="start-time" name="stime">
+<input type="time" id="start-time" name="stime">
 <!-- END TIME -->
+<label for="end-date">End date:</label>
+<input type="date" id="end-date" name="edate">
 <label for="end-time">End time:</label>
-<input type="datetime-local" id="end-time" name="etime">
+<input type="time" id="end-time" name="etime">
 <!-- BANDS -->
 <fieldset>
   <legend>I will be active on bands:</legend>
