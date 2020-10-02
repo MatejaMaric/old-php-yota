@@ -44,19 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['fname']) && isset($_PO
   }
 }
 ?>
-<form method="post">
-<label for="fname">First name:</label>
-<input type="text" id="fname" name="fname">
-<label for="lname">Last name:</label>
-<input type="text" id="lname" name="lname">
-<label for="age">Age:</label>
-<input type="number" id="age" name="age">
-<input type="submit" value="Submit">
-</form>
-
-<hr>
-<hr>
-<hr>
 
 <form method="post">
 <!-- SPECIAL CALL -->

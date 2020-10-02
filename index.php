@@ -36,11 +36,11 @@ session_start();
 
 		echo '<div style="overflow-x:auto;">';
     echo "<table>\n";
-    echo "<tr>";
+    echo "<thead><tr>";
     echo "<th>Ime</th>";
     echo "<th>Prezime</th>";
     echo "<th>Godine</th>";
-    echo "</tr>\n";
+    echo "</tr></thead><tbody>\n";
 
     foreach($db->query("SELECT * FROM $table where approved=true") as $row) {
       echo "<tr>";
@@ -50,7 +50,7 @@ session_start();
       echo "</tr>\n";
     }
 
-    echo "</table>\n</div>\n";
+    echo "</tbody></table>\n</div>\n";
   } catch (PDOException $e) {
     echo "<p>Error!: " . $e->getMessage() . "</p>";
     die();
