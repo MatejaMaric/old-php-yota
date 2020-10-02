@@ -1,41 +1,32 @@
 <?php
 session_start();
 
-# DB CONNECT
-try {
-  $user = "yota_user";
-  $password = "leex3EThieK0ieLaiVaicaifef5eecei";
-  $database = "yota_call_db";
-  $conn = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-  echo "<p>Error!: " . $e->getMessage() . "</p>";
-  die();
-}
-
-# SHOLUD SOMETHING BE APPROVED?
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id']) ) {
-	$stmt = $conn->prepare("UPDATE activities SET approved = true WHERE id=:id");
-echo "lol:" . $_POST['id'];
-	$stmt->bindParam(':id', $_POST['id']);
-	$stmt->execute();
-}
-
 # IS LOGIN LEGITIMATE?
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_POST['password'])) {
-    try {
-	$stmt = $conn->prepare("SELECT * FROM admins WHERE email=:email");
-	$stmt->bindParam(':email', $_POST['email']);
-	$stmt->execute();
-	$row = $stmt->fetch();
-	if (password_verify($_POST['password'], $row['password'])){
-		$_SESSION['admin'] = true;
-	} else {
-		$_SESSION['admin'] = false;
+	# DB CONNECT
+	try {
+		$user = "yota_user";
+		$password = "gahdeer6shai9hogai2sai4quuaj1eVu";
+		$database = "yota_call_db";
+
+		$conn = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		$stmt = $conn->prepare("SELECT * FROM admins WHERE email=:email");
+		$stmt->bindParam(':email', $_POST['email']);
+		$stmt->execute();
+		$row = $stmt->fetch();
+
+		if (password_verify($_POST['password'], $row['password'])){
+			$_SESSION['admin'] = true;
+		} else {
+			$_SESSION['admin'] = false;
+		}
+	} catch (PDOException $e) {
+			echo "<p>Error!: " . $e->getMessage() . "</p>";
 	}
-    } catch (PDOException $e) {
-        echo "<p>Error!: " . $e->getMessage() . "</p>";
-    }
+	$stmt=null;
+	$conn=null;
 }
 ?>
 <!DOCTYPE html>
