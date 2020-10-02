@@ -44,6 +44,10 @@ nav a:hover {
 .right {
     float: right;
 }
+.mid {
+    max-width: 750px;
+    margin: 1rem auto;
+}
 
 /* MAIN STYLING */
 main {
