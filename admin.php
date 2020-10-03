@@ -1,33 +1,5 @@
 <?php
 session_start();
-
-# IS LOGIN LEGITIMATE?
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_POST['password'])) {
-	# DB CONNECT
-	try {
-		$user = "yota_user";
-		$password = "gahdeer6shai9hogai2sai4quuaj1eVu";
-		$database = "yota_call_db";
-
-		$conn = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-		$stmt = $conn->prepare("SELECT * FROM admins WHERE email=:email");
-		$stmt->bindParam(':email', $_POST['email']);
-		$stmt->execute();
-		$row = $stmt->fetch();
-
-		if (password_verify($_POST['password'], $row['password'])){
-			$_SESSION['admin'] = true;
-		} else {
-			$_SESSION['admin'] = false;
-		}
-	} catch (PDOException $e) {
-			echo "<p>Error!: " . $e->getMessage() . "</p>";
-	}
-	$stmt=null;
-	$conn=null;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,35 +24,79 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_PO
 ?>
 </nav>
 <main>
+<p id="alert"></p>
 <?php
 if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
   try {
+		$user = "yota_admin";
+		$password = "quaequaquagh6ahwoh6Chahx1EiFooGh";
+		$database = "yota_call_db";
+		$conn = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     echo '<div style="overflow-x:auto;">';
-    echo "<table>\n";
+    echo "<table><thead>\n";
     echo "<tr>";
-    echo "<th>Ime</th>";
-    echo "<th>Prezime</th>";
-    echo "<th>Godine</th>";
+    echo "<th>ID</th>";
+    echo "<th>Approved</th>";
+    echo "<th>Operator Sign</th>";
+    echo "<th>QSO</th>";
+    echo "<th>From</th>";
+    echo "<th>To</th>";
+    echo "<th>Frequencies</th>";
+    echo "<th>Modes</th>";
+    echo "<th>Special sign</th>";
+    echo "<th>Operator Name</th>";
+    echo "<th>Operator Email</th>";
+    echo "<th>Operator Phone</th>";
     echo "<th>Actions</th>";
-    echo "</tr>\n";
-    foreach($conn->query("SELECT * FROM activities WHERE approved = false") as $row) {
+    echo "</tr></thead><tbody>\n";
+
+    foreach($conn->query("SELECT * FROM activities ORDER BY `id` DESC") as $row) {
       echo "<tr>";
-      echo "<td>" . $row['name'] . "</td>";
-      echo "<td>" . $row['surname'] . "</td>";
-      echo "<td>" . $row['age'] . "</td>";
-      echo '<td><form action="admin.php" method="post">';
-      echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
-      echo '<input type="submit" class="abtn" value="Approve"/>';
-      echo '</form></td>';
-      echo "</tr>\n";
+      echo "<td>" . $row['id'] . "</td>";
+
+			if ($row['approved'])
+				echo "<td><input type=\"checkbox\" checked></td>";
+			else
+				echo "<td class=\"center\"><input type=\"checkbox\"></td>";
+
+      //echo "<td contenteditable=\"true\">" . $row['operatorCall'] . "</td>";
+      //echo "<td contenteditable=\"true\">" . $row['fromTime'] . "</td>";
+      //echo "<td contenteditable=\"true\">" . $row['toTime'] . "</td>";
+      //echo "<td contenteditable=\"true\">" . $row['frequencies'] . "</td>";
+      //echo "<td contenteditable=\"true\">" . $row['modes'] . "</td>";
+      //echo "<td contenteditable=\"true\">" . $row['specialCall'] . "</td>";
+      //echo "<td contenteditable=\"true\">" . $row['operatorName'] . "</td>";
+      //echo "<td contenteditable=\"true\">" . $row['operatorEmail'] . "</td>";
+      //echo "<td contenteditable=\"true\">" . $row['operatorPhone'] . "</td>";
+      //echo "<td contenteditable=\"true\">" . $row['qso'] . "</td>";
+
+      echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['operatorCall'] . "</div></td>";
+      echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['qso'] . "</div></td>";
+      echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['fromTime'] . "</div></td>";
+      echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['toTime'] . "</div></td>";
+      echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['frequencies'] . "</div></td>";
+      echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['modes'] . "</div></td>";
+      echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['specialCall'] . "</div></td>";
+      echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['operatorName'] . "</div></td>";
+      echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['operatorEmail'] . "</div></td>";
+      echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['operatorPhone'] . "</div></td>";
+
+			echo "<td>";
+			echo "<button onclick=\"btnAction('update', this)\">Update</button>";
+			echo "<button onclick=\"btnAction('restore', this)\">Restore</button>";
+			echo "<button onclick=\"btnAction('delete', this)\">Delete</button>";
+			echo "</td></tr>\n";
     }
-    echo "</table>\n</div>\n";
+    echo "</tbody></table>\n</div>\n";
   } catch (PDOException $e) {
     echo "<p>Error!: " . $e->getMessage() . "</p>";
   }
 } else {
 	# Bad pass check...
-	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['admin']) && $_SESSION['admin'] == false) echo "<em>Bad credentials!</em>";
+	if (isset($_SESSION['admin']) && $_SESSION['admin'] == false)
+		echo "<em>Bad credentials!</em>";
 	# Login form
 	echo '<form method="post">';
 	echo '<label for="email">Email:</label>';
@@ -92,5 +108,6 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
 }
 ?>
 </main>
+<script src="request-edit.js"></script>
 </body>
 </html>

@@ -22,6 +22,6 @@ CREATE TABLE admins(
         `password` varchar(255) not null
       ) charset=utf8;
 
-GRANT ALL PRIVILEGES ON `yota_db`.* TO `yota_admin`@`localhost` IDENTIFIED BY 'quaequaquagh6ahwoh6Chahx1EiFooGh';
-GRANT SELECT ON `yota_db`.* TO `yota_user`@`localhost` IDENTIFIED BY 'gahdeer6shai9hogai2sai4quuaj1eVu';
-GRANT INSERT ON `yota_db`.`activities` TO `yota_requester`@`localhost` IDENTIFIED BY 'oon5iraeghaidoShi5sheefie2uuz3gu';
+GRANT ALL PRIVILEGES ON `yota_call_db`.* TO `yota_admin`@`localhost` IDENTIFIED BY 'quaequaquagh6ahwoh6Chahx1EiFooGh';
+GRANT SELECT ON `yota_call_db`.* TO `yota_user`@`localhost` IDENTIFIED BY 'gahdeer6shai9hogai2sai4quuaj1eVu';
+GRANT INSERT ON `yota_call_db`.`activities` TO `yota_requester`@`localhost` IDENTIFIED BY 'oon5iraeghaidoShi5sheefie2uuz3gu';

@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Error handling
   if ($is_something_empty) {
-    echo "<p class=\"mid\"><strong>All fields must be filed!</strong></p>";
+    $_SESSION["msg"] = "All fields must be filed!";
   }
   else {
     // Send to DB
@@ -79,9 +79,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $stmt->bindParam(':operatorEmail', $operatorEmail);
       $stmt->bindParam(':operatorPhone', $operatorPhone);
       $stmt->execute();
-      echo "<p class=\"mid\">Data inserted.</p>";
+      $_SESSION["msg"] = "Data inserted.";
     } catch (PDOException $e) {
-      echo "<p class=\"mid\">Error!: " . $e->getMessage() . "</p>";
+      $_SESSION["msg"] = "Error!: " . $e->getMessage();
     }
   }
 }
@@ -92,3 +92,5 @@ function clear_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
+
+header("Location: reservation.php");

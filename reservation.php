@@ -24,11 +24,14 @@ session_start();
 ?>
 </nav>
 <main>
+
 <?php
-  require "handle-reservation.php";
+if (isset($_SESSION["msg"])) {
+    echo "<p class=\"mid\"><strong>" . $_SESSION["msg"] . "</strong></p>";
+}
 ?>
 
-<form method="post">
+<form action="handle-reservation.php" method="post">
 <!-- SPECIAL CALL -->
 <label for="special-call">Special Call:</label>
 <select id="special-call" name="scall">

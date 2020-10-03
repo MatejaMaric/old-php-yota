@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
 	try {
 		$user = "yota_admin";
 		$password = "quaequaquagh6ahwoh6Chahx1EiFooGh";
