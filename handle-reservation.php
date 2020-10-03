@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // DB INFO
   $user = "yota_requester";

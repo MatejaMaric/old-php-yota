@@ -61,17 +61,6 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
 			else
 				echo "<td class=\"center\"><input type=\"checkbox\"></td>";
 
-      //echo "<td contenteditable=\"true\">" . $row['operatorCall'] . "</td>";
-      //echo "<td contenteditable=\"true\">" . $row['fromTime'] . "</td>";
-      //echo "<td contenteditable=\"true\">" . $row['toTime'] . "</td>";
-      //echo "<td contenteditable=\"true\">" . $row['frequencies'] . "</td>";
-      //echo "<td contenteditable=\"true\">" . $row['modes'] . "</td>";
-      //echo "<td contenteditable=\"true\">" . $row['specialCall'] . "</td>";
-      //echo "<td contenteditable=\"true\">" . $row['operatorName'] . "</td>";
-      //echo "<td contenteditable=\"true\">" . $row['operatorEmail'] . "</td>";
-      //echo "<td contenteditable=\"true\">" . $row['operatorPhone'] . "</td>";
-      //echo "<td contenteditable=\"true\">" . $row['qso'] . "</td>";
-
       echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['operatorCall'] . "</div></td>";
       echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['qso'] . "</div></td>";
       echo "<td><div class=\"edit\" contenteditable=\"true\">" . $row['fromTime'] . "</div></td>";
@@ -98,7 +87,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
 	if (isset($_SESSION['admin']) && $_SESSION['admin'] == false)
 		echo "<em>Bad credentials!</em>";
 	# Login form
-	echo '<form method="post">';
+	echo '<form action="login.php" method="post">';
 	echo '<label for="email">Email:</label>';
 	echo '<input type="email" id="email" name="email">';
 	echo '<label for="password">Password:</label>';

@@ -28,6 +28,7 @@ session_start();
 <?php
 if (isset($_SESSION["msg"])) {
     echo "<p class=\"mid\"><strong>" . $_SESSION["msg"] . "</strong></p>";
+    unset($_SESSION["msg"]);
 }
 ?>
 
