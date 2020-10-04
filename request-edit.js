@@ -4,18 +4,18 @@ function btnAction(action, btn) {
 
   var actionData = {
     action: action,
-    id: trData[0].innerHTML,
+    id: trData[0].innerText,
     approved: trData[1].firstElementChild.checked,
-    operatorCall: trData[2].firstElementChild.innerHTML,
-    qso: trData[3].firstElementChild.innerHTML,
-    fromTime: trData[4].firstElementChild.innerHTML,
-    toTime: trData[5].firstElementChild.innerHTML,
-    frequencies: trData[6].firstElementChild.innerHTML,
-    modes: trData[7].firstElementChild.innerHTML,
-    specialCall: trData[8].firstElementChild.innerHTML,
+    operatorCall: trData[2].firstElementChild.innerText,
+    qso: trData[3].firstElementChild.innerText,
+    fromTime: trData[4].firstElementChild.innerText,
+    toTime: trData[5].firstElementChild.innerText,
+    frequencies: trData[6].firstElementChild.innerText,
+    modes: trData[7].firstElementChild.innerText,
+    specialCall: trData[8].firstElementChild.innerText,
     operatorName: trData[9].firstElementChild.innerText,
-    operatorEmail: trData[10].firstElementChild.innerHTML,
-    operatorPhone: trData[11].firstElementChild.innerHTML
+    operatorEmail: trData[10].firstElementChild.innerText,
+    operatorPhone: trData[11].firstElementChild.innerText
   }
 
   if (actionData.action == 'delete')
@@ -31,29 +31,29 @@ function btnAction(action, btn) {
         console.log(response);
         // Handle various actions
         if (response.action == "update") {
-          document.getElementById("notice").innerHTML = "Record #" + actionData.id + " updated.";
+          document.getElementById("notice").innerText = "Record #" + actionData.id + " updated.";
         } else if (response.action == "restore") {
           trData[1].firstElementChild.checked = response.approved === "1";
-          trData[2].firstElementChild.innerHTML = response.operatorCall;
-          trData[3].firstElementChild.innerHTML = response.qso;
-          trData[4].firstElementChild.innerHTML = response.fromTime;
-          trData[5].firstElementChild.innerHTML = response.toTime;
-          trData[6].firstElementChild.innerHTML = response.frequencies;
-          trData[7].firstElementChild.innerHTML = response.modes;
-          trData[8].firstElementChild.innerHTML = response.specialCall;
-          trData[9].firstElementChild.innerHTML = response.operatorName;
-          trData[10].firstElementChild.innerHTML = response.operatorEmail;
-          trData[11].firstElementChild.innerHTML = response.operatorPhone;
-          document.getElementById("notice").innerHTML = "Record's #" + actionData.id + " data restored.";
+          trData[2].firstElementChild.innerText = response.operatorCall;
+          trData[3].firstElementChild.innerText = response.qso;
+          trData[4].firstElementChild.innerText = response.fromTime;
+          trData[5].firstElementChild.innerText = response.toTime;
+          trData[6].firstElementChild.innerText = response.frequencies;
+          trData[7].firstElementChild.innerText = response.modes;
+          trData[8].firstElementChild.innerText = response.specialCall;
+          trData[9].firstElementChild.innerText = response.operatorName;
+          trData[10].firstElementChild.innerText = response.operatorEmail;
+          trData[11].firstElementChild.innerText = response.operatorPhone;
+          document.getElementById("notice").innerText = "Record's #" + actionData.id + " data restored.";
         } else if (response.action == "delete") {
-          document.getElementById("notice").innerHTML = "Record #" + actionData.id + " deleted.";
+          document.getElementById("notice").innerText = "Record #" + actionData.id + " deleted.";
         } else {
           console.log("No action?");
           console.log(this.responseText);
         }
       } catch {
         console.log(this.responseText);
-        document.getElementById("notice").innerHTML = "Bad input data!";
+        document.getElementById("notice").innerText = "Bad input data!";
       }
     }
   };
