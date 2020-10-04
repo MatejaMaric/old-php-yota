@@ -4,6 +4,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST["ac
   try {
     $conn = new PDO("mysql:host=localhost;dbname=testdb", "testuser", "testpass");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     $stmt = $conn->prepare("UPDATE tbl1 SET `name`=:name, `from`=:from, `to`=:to WHERE id=:id");
     $stmt->bindParam(':id', $_POST["id"]);
     $stmt->bindParam(':name', $_POST["name"]);
@@ -23,6 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST["ac
   try {
     $conn = new PDO("mysql:host=localhost;dbname=testdb", "testuser", "testpass");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     $stmt = $conn->prepare("SELECT * FROM tbl1 WHERE id=:id");
     $stmt->bindParam(':id', $_POST["id"]);
 		$stmt->execute();

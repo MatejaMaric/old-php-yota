@@ -24,7 +24,7 @@ session_start();
 ?>
 </nav>
 <main>
-<p id="alert"></p>
+<p id="notice"></p>
 <?php
 if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
   try {
