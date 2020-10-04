@@ -14,6 +14,7 @@ session_start();
 <nav>
   <a class="active" href="index.php">Activity Plan</a>
   <a href="reservation.php">Make reservation</a>
+  <span class="right">
 <?php
   if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
     echo '<a class="right" href="/logout.php">Logout</a>';
@@ -22,6 +23,7 @@ session_start();
     echo '<a class="right" href="/admin.php">Login</a>';
   }
 ?>
+  </span>
 </nav>
 <main>
 <?php
@@ -45,7 +47,7 @@ session_start();
     echo "<th>QSO</th>";
     echo "</tr></thead><tbody>\n";
 
-    foreach($db->query("SELECT * FROM $table where approved=false ORDER BY `id` DESC") as $row) {
+    foreach($db->query("SELECT * FROM $table where approved=true ORDER BY `id` DESC") as $row) {
       echo "<tr>";
       echo "<td>" . $row['operatorCall'] . "</td>";
       echo "<td>" . $row['fromTime'] . "</td>";

@@ -24,7 +24,6 @@ session_start();
 ?>
 </nav>
 <main>
-<p id="notice"></p>
 <?php
 if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
   try {
@@ -34,7 +33,8 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
 		$conn = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    echo '<div style="overflow-x:auto;">';
+		echo '<p id="notice">Reservation records: </p>';
+    echo '<div class="tablediv">';
     echo "<table><thead>\n";
     echo "<tr>";
     echo "<th>ID</th>";
@@ -57,7 +57,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
       echo "<td>" . $row['id'] . "</td>";
 
 			if ($row['approved'])
-				echo "<td><input type=\"checkbox\" checked></td>";
+				echo "<td class=\"center\"><input type=\"checkbox\" checked></td>";
 			else
 				echo "<td class=\"center\"><input type=\"checkbox\"></td>";
 

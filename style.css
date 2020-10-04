@@ -74,7 +74,7 @@ a {
 
 /* TABEL STYLING */
 table {
-    margin: 1rem 0;
+    margin: 0;
     border-collapse: collapse;
     width: 100%;
 }
@@ -92,6 +92,24 @@ td, th {
     padding: 8px;
     white-space: nowrap;
 }
+
+.tablediv {
+    overflow-x: scroll;
+    height: 70vh;
+}
+
+/*div.tablediv {*/
+    /*overflow:scroll;*/
+    /*height: 80vh;*/
+    /*width: 100%;*/
+    /*display: block;*/
+/*}*/
+
+/*tbody {*/
+    /*overflow:scroll;*/
+    /*height: 80vh;*/
+    /*width: 80vw;*/
+/*}*/
 
 .center {
     text-align: center;
