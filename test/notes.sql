@@ -3,7 +3,7 @@ USE yota_db;
 
 CREATE TABLE activities(
         `id` int(11) not null auto_increment primary key,
-        `approved` boolean not null default false;
+        `approved` boolean not null default false,
         `specialCall` varchar(50) not null,
         `fromTime` datetime not null,
         `toTime` datetime not null,
@@ -12,8 +12,8 @@ CREATE TABLE activities(
         `operatorCall` varchar(50) not null,
         `operatorName` varchar(50) not null,
         `operatorEmail` varchar(100) not null,
-        `operatorPhone` varchar(50) not null
-        `qso` int not null default 0;
+        `operatorPhone` varchar(50) not null,
+        `qso` int not null default 0
       ) charset=utf8;
 
 CREATE TABLE admins(
