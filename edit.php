@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['admin']) && $_SESSI
 
 	try {
 		$recvData = json_decode(file_get_contents("php://input"));
+
 		$recvData->id = clear_input($recvData->id);
 		$recvData->approved = filter_var($recvData->approved, FILTER_VALIDATE_BOOLEAN);
 		$recvData->specialCall = clear_input($recvData->specialCall);
@@ -34,9 +35,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['admin']) && $_SESSI
 		$recvData->operatorPhone = clear_input($recvData->operatorPhone);
 		$recvData->qso = clear_input($recvData->qso);
 
+		//foreach ($recvData as $key => $value) {
+			//if ($key == "approved")
+				//$recvData->approved = filter_var($recvData->approved, FILTER_VALIDATE_BOOLEAN);
+			//else
+				//$recvData->$key = clear_input($recvData->$key);
+		//}
+
 		$recvData->$specialCall = strtoupper($recvData->$specialCall);
 		$recvData->$modes = strtoupper($recvData->$modes);
 		$recvData->$operatorCall = strtoupper($recvData->$operatorCall);
+
+		//print_r($recvData);
 
 	} catch (Exception $e) {
 		die("Can't decode JSON!");
@@ -61,6 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['admin']) && $_SESSI
 			$recvData->approved = $recvData->approved === true ? "1" : "0";
 
 			$stmt = $conn->prepare($sql);
+
+			//foreach ($recvData as $key => $value) {
+				//$stmt->bindParam(':'.$key, $recvData->$key);
+			//}
+
 			$stmt->bindParam(':id', 						$recvData->id);
 			$stmt->bindParam(':approved', 			$recvData->approved);
 			$stmt->bindParam(':specialCall', 		$recvData->specialCall);
@@ -73,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['admin']) && $_SESSI
 			$stmt->bindParam(':operatorEmail', 	$recvData->operatorEmail);
 			$stmt->bindParam(':operatorPhone', 	$recvData->operatorPhone);
 			$stmt->bindParam(':qso', 						$recvData->qso);
+
 			$stmt->execute();
 
 			$sendData->action=$recvData->action;
@@ -88,10 +104,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['admin']) && $_SESSI
 
 			$sendData = null;
 			$sendData->action=$recvData->action;
+
+			//foreach ($row as $key => $value) {
+				//$sendData->$key = $value;
+			//}
+
 			$sendData->id=$row["id"];
-
 			$sendData->approved=$row["approved"];
-
 			$sendData->specialCall=$row["specialCall"];
 			$sendData->fromTime=$row["fromTime"];
 			$sendData->toTime=$row["toTime"];

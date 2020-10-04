@@ -13,7 +13,7 @@ function btnAction(action, btn) {
     frequencies: trData[6].firstElementChild.innerHTML,
     modes: trData[7].firstElementChild.innerHTML,
     specialCall: trData[8].firstElementChild.innerHTML,
-    operatorName: trData[9].firstElementChild.innerHTML,
+    operatorName: trData[9].firstElementChild.innerText,
     operatorEmail: trData[10].firstElementChild.innerHTML,
     operatorPhone: trData[11].firstElementChild.innerHTML
   }
