@@ -18,6 +18,8 @@ function btnAction(action, btn) {
     operatorPhone: trData[11].firstElementChild.innerHTML
   }
 
+  console.log(actionData);
+
   if (actionData.action == 'delete')
     if (confirm("Are you sure you want to delete reservation #" + actionData.id + " made by " + actionData.operatorSign + "?"))
       trDom.remove();
@@ -46,6 +48,9 @@ function btnAction(action, btn) {
           document.getElementById("notice").innerHTML = "Record's #" + actionData.id + " data restored.";
         } else if (response.action == "delete") {
           document.getElementById("notice").innerHTML = "Record #" + actionData.id + " deleted.";
+        } else {
+          console.log("Nothing?");
+          console.log(this.responseText);
         }
       } catch {
         console.log(this.responseText);

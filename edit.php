@@ -21,19 +21,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['admin']) && $_SESSI
 
 	try {
 		$recvData = json_decode(file_get_contents("php://input"));
-		$recvData.id = clear_input($recvData.id);
-		$recvData.approved = clear_input($recvData.approved);
-		$recvData.specialCall = clear_input($recvData.specialCall);
-		$recvData.fromTime = clear_input($recvData.fromTime);
-		$recvData.toTime = clear_input($recvData.toTime);
-		$recvData.frequencies = clear_input($recvData.frequencies);
-		$recvData.modes = clear_input($recvData.modes);
-		$recvData.operatorCall = clear_input($recvData.operatorCall);
-		$recvData.operatorName = clear_input($recvData.operatorName);
-		$recvData.operatorEmail = clear_input($recvData.operatorEmail);
-		$recvData.operatorPhone = clear_input($recvData.operatorPhone);
-		$recvData.qso = clear_input($recvData.qso);
-	} catch {
+		$recvData->id = clear_input($recvData->id);
+		$recvData->approved = clear_input($recvData->approved);
+		$recvData->specialCall = clear_input($recvData->specialCall);
+		$recvData->fromTime = clear_input($recvData->fromTime);
+		$recvData->toTime = clear_input($recvData->toTime);
+		$recvData->frequencies = clear_input($recvData->frequencies);
+		$recvData->modes = clear_input($recvData->modes);
+		$recvData->operatorCall = clear_input($recvData->operatorCall);
+		$recvData->operatorName = clear_input($recvData->operatorName);
+		$recvData->operatorEmail = clear_input($recvData->operatorEmail);
+		$recvData->operatorPhone = clear_input($recvData->operatorPhone);
+		$recvData->qso = clear_input($recvData->qso);
+	} catch (Exception $e) {
 		die("Can't decode JSON!");
 	}
 
@@ -54,51 +54,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['admin']) && $_SESSI
 				WHERE id=:id";
 
       $stmt = $conn->prepare($sql);
-      $stmt->bindParam(':approved', 			$recvData.approved);
-      $stmt->bindParam(':specialCall', 		$recvData.specialCall);
-      $stmt->bindParam(':fromTime', 			$recvData.fromTime);
-      $stmt->bindParam(':toTime', 				$recvData.toTime);
-      $stmt->bindParam(':frequencies', 		$recvData.frequencies);
-      $stmt->bindParam(':modes', 					$recvData.modes);
-      $stmt->bindParam(':operatorCall', 	$recvData.operatorCall);
-      $stmt->bindParam(':operatorName', 	$recvData.operatorName);
-      $stmt->bindParam(':operatorEmail', 	$recvData.operatorEmail);
-      $stmt->bindParam(':operatorPhone', 	$recvData.operatorPhone);
-      $stmt->bindParam(':qso', 						$recvData.qso);
+      $stmt->bindParam(':approved', 			$recvData->approved);
+      $stmt->bindParam(':specialCall', 		$recvData->specialCall);
+      $stmt->bindParam(':fromTime', 			$recvData->fromTime);
+      $stmt->bindParam(':toTime', 				$recvData->toTime);
+      $stmt->bindParam(':frequencies', 		$recvData->frequencies);
+      $stmt->bindParam(':modes', 					$recvData->modes);
+      $stmt->bindParam(':operatorCall', 	$recvData->operatorCall);
+      $stmt->bindParam(':operatorName', 	$recvData->operatorName);
+      $stmt->bindParam(':operatorEmail', 	$recvData->operatorEmail);
+      $stmt->bindParam(':operatorPhone', 	$recvData->operatorPhone);
+      $stmt->bindParam(':qso', 						$recvData->qso);
       $stmt->execute();
 
-			$sendData->action=$recvData.action;
+			$sendData->action=$recvData->action;
 			echo json_encode($sendData);
 
 		} else if ($recvData->action == "restore") {
 
 			$stmt = $conn->prepare("SELECT * FROM activities WHERE id=:id");
-			$stmt->bindParam(':id', $recvData.id);
+			$stmt->bindParam(':id', $recvData->id);
 			$stmt->execute();
 			$row = $stmt->fetch();
 
 			$sendData->action=$recvData->action;
-			$sendData->id=$row.id;
-			$sendData->approved=$row.approved;
-			$sendData->specialCall=$row.specialCall;
-			$sendData->fromTime=$row.fromTime;
-			$sendData->toTime=$row.toTime;
-			$sendData->frequencies=$row.frequencies;
-			$sendData->modes=$row.modes;
-			$sendData->operatorCall=$row.operatorCall;
-			$sendData->operatorName=$row.operatorName;
-			$sendData->operatorEmail=$row.operatorEmail;
-			$sendData->operatorPhone=$row.operatorPhone;
-			$sendData->qso=$row.qso;
+			$sendData->id=$row->id;
+			$sendData->approved=$row->approved;
+			$sendData->specialCall=$row->specialCall;
+			$sendData->fromTime=$row->fromTime;
+			$sendData->toTime=$row->toTime;
+			$sendData->frequencies=$row->frequencies;
+			$sendData->modes=$row->modes;
+			$sendData->operatorCall=$row->operatorCall;
+			$sendData->operatorName=$row->operatorName;
+			$sendData->operatorEmail=$row->operatorEmail;
+			$sendData->operatorPhone=$row->operatorPhone;
+			$sendData->qso=$row->qso;
 
 			echo json_encode($sendData);
 
 		} else if ($recvData->action == "delete") {
 			$stmt = $conn->prepare("DELETE FROM activities WHERE id=:id");
-			$stmt->bindParam(':id', $recvData.id);
+			$stmt->bindParam(':id', $recvData->id);
 			$stmt->execute();
 
-			$sendData->action=$recvData.action;
+			$sendData->action=$recvData->action;
 			echo json_encode($sendData);
 		}
 	} catch ( Exception $e ) {
