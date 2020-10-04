@@ -67,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['admin']) && $_SESSI
       $stmt->bindParam(':qso', 						$recvData.qso);
       $stmt->execute();
 
+			$sendData->action=$recvData.action;
 			echo json_encode($sendData);
 
 		} else if ($recvData->action == "restore") {
@@ -97,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['admin']) && $_SESSI
 			$stmt->bindParam(':id', $recvData.id);
 			$stmt->execute();
 
-			$sendData->action=$data.action;
+			$sendData->action=$recvData.action;
 			echo json_encode($sendData);
 		}
 	} catch ( Exception $e ) {
