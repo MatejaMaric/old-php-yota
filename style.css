@@ -79,11 +79,13 @@ table {
     width: 100%;
 }
 
-thead {
-    background-color: black;
+thead th {
     color: white;
-    /*color: black;*/
-    /*background-color: #ccc;*/
+    background-color: black;
+    border: 1px solid #ccc;
+    background-clip: padding-box;
+    position: sticky;
+    top: 0;
 }
 
 td, th {

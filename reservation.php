@@ -14,14 +14,16 @@ session_start();
 <nav>
   <a href="index.php">Activity Plan</a>
   <a class="active" href="reservation.php">Make reservation</a>
+  <span class="right">
 <?php
   if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
-    echo '<a class="right" href="/logout.php">Logout</a>';
-    echo '<a class="right" href="admin.php">Administration</a>';
+    echo '<a href="admin.php">Administration</a>';
+    echo '<a href="/logout.php">Logout</a>';
   } else {
-    echo '<a class="right" href="/admin.php">Login</a>';
+    echo '<a href="/admin.php">Login</a>';
   }
 ?>
+  </span>
 </nav>
 <main>
 

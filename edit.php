@@ -33,6 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['admin']) && $_SESSI
 		$recvData->operatorEmail = clear_input($recvData->operatorEmail);
 		$recvData->operatorPhone = clear_input($recvData->operatorPhone);
 		$recvData->qso = clear_input($recvData->qso);
+
+		$recvData->$specialCall = strtoupper($recvData->$specialCall);
+		$recvData->$modes = strtoupper($recvData->$modes);
+		$recvData->$operatorCall = strtoupper($recvData->$operatorCall);
+
 	} catch (Exception $e) {
 		die("Can't decode JSON!");
 	}

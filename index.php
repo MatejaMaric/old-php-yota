@@ -17,10 +17,10 @@ session_start();
   <span class="right">
 <?php
   if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
-    echo '<a class="right" href="/logout.php">Logout</a>';
-  	echo '<a class="right" href="admin.php">Administration</a>';
+  	echo '<a href="admin.php">Administration</a>';
+    echo '<a href="/logout.php">Logout</a>';
   } else {
-    echo '<a class="right" href="/admin.php">Login</a>';
+    echo '<a href="/admin.php">Login</a>';
   }
 ?>
   </span>
