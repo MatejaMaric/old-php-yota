@@ -42,12 +42,12 @@ session_start();
     echo "<th>Operator</th>";
     echo "<th>From</th>";
     echo "<th>To</th>";
-    echo "<th>Special sign</th>";
+    echo "<th>Special Callsign</th>";
     echo "<th>Frequencies</th>";
     echo "<th>QSO</th>";
     echo "</tr></thead><tbody>\n";
 
-    foreach($db->query("SELECT * FROM $table where approved=true ORDER BY `id` DESC") as $row) {
+    foreach($db->query("SELECT * FROM $table where approved=true ORDER BY `fromTime`") as $row) {
       echo "<tr>";
       echo "<td>" . $row['operatorCall'] . "</td>";
       echo "<td>" . $row['fromTime'] . "</td>";

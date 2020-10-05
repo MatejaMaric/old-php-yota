@@ -36,7 +36,7 @@ if (isset($_SESSION["msg"])) {
 
 <form action="handle-reservation.php" method="post">
 <!-- SPECIAL CALL -->
-<label for="special-call">Special Call:</label>
+<label for="special-call">Special Callsign:</label>
 <select id="special-call" name="scall">
   <option value="YT50SCWC">YT50SCWC</option>
 </select> 
@@ -124,7 +124,7 @@ if (isset($_SESSION["msg"])) {
 
 </fieldset>
 <!-- OPERATOR CALL -->
-<label for="operator-call">Operator call sign:</label>
+<label for="operator-call">Operator Callsign:</label>
 <input type="text" id="operator-call" name="ocall">
 <!-- OPERATOR NAME -->
 <label for="operator-name">Operator name:</label>

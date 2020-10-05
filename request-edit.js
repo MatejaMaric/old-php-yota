@@ -18,9 +18,11 @@ function btnAction(action, btn) {
     operatorPhone: trData[11].firstElementChild.innerText
   }
 
-  if (actionData.action == 'delete')
-    if (confirm("Are you sure you want to delete reservation #" + actionData.id + " made by " + actionData.operatorCall + "?"))
+  if (actionData.action == 'delete') {
+    if (confirm("Are you sure you want to delete reservation #" + actionData.id + " made by " + actionData.operatorCall + "?") === true)
       trDom.remove();
+    else return;
+  }
 
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {

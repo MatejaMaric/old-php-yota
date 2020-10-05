@@ -41,13 +41,13 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
     echo "<tr>";
     echo "<th>ID</th>";
     echo "<th>Approved</th>";
-    echo "<th>Operator Sign</th>";
+    echo "<th>Operator Callsign</th>";
     echo "<th>QSO</th>";
     echo "<th>From</th>";
     echo "<th>To</th>";
     echo "<th>Frequencies</th>";
     echo "<th>Modes</th>";
-    echo "<th>Special sign</th>";
+    echo "<th>Special Callsign</th>";
     echo "<th>Operator Name</th>";
     echo "<th>Operator Email</th>";
     echo "<th>Operator Phone</th>";
